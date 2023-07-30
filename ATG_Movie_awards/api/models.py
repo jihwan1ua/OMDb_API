@@ -6,21 +6,21 @@ from django.utils import timezone
 class User(models.Model):
     # User requirements. FirstName, LastName, UserName,  
     userID = models.AutoField(primary_key=True)
-    firstName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50, null=True, blank=True)
-    userName = models.CharField(max_length=50, null=True, )
-    email = models.EmailField(max_length=254, null=False, blank=False, unique=True)
+    firstName = models.CharField(max_length=50, null=True)
+    lastName = models.CharField(max_length=50, null=True)
+    userName = models.CharField(max_length=50, null=True)
+    email = models.EmailField()
     password = models.CharField(max_length=100)
     # TODO: check the lastModified to let user know the password should be updated, because for fun.
     createdOn = models.DateTimeField(editable=False)
     lastModified = models.DateTimeField();
 
-    def save(self, *args, **kwargs):
-        # on save, will update the createdOn. Check if new User record
-        if not self.id:
-            self.createdOn = timezone.now();
-        self.modified = timezone.now();
-        return super(User, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     # on save, will update the createdOn. Check if new User record
+    #     if not self.id:
+    #         self.createdOn = timezone.now();
+    #     self.modified = timezone.now();
+    #     return super(User, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.firstName + " " + self.lastName

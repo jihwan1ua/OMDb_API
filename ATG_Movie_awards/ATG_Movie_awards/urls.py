@@ -17,7 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# TODO: Instead of having urls.py under api app, use router to handle endpoint navigation
+# Using viewsets so as_view can't be used to show serializersView, so using router https://www.django-rest-framework.org/api-guide/routers
+from rest_framework import routers
+from api import views
+router = routers.DefaultRouter()
+router.register(r'user', views.UserSerializerView)
+router.register(r'movies', views.MovieSerializerView)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('api.urls'))
+    path('', include(router.urls))
 ]
