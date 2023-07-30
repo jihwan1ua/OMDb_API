@@ -1,33 +1,76 @@
 from django.db import models
+# from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 
 # Create your models here.
+# Learned about the Django auth models for user authentications, so using that instead of custom class user
+# https://docs.djangoproject.com/en/1.8/_modules/django/contrib/auth/models/
+
+# TODO: It would be good to use django.contrib.auth.models for authentications
+
+# handles creating, modifying users
+# class UserAccountManager(BaseUserManager):
+#     def create_user(self, userName, email, password=None):
+#         if not email:
+#             raise ValueError('User must have a valid email')
+        
+#         email = self.normalize_email(email);
+#         user = self.model(email=email, name=userName)
+
+#         # BaseUserManager will hash the password and won't save the password as is on DB.
+#         user.set_password(password)
+#         user.save()
+
+#         return user
+
+# class UserAccount(AbstractBaseUser, PermissionsMixin):
+#     # User requirements. FirstName, LastName, UserName, email, password
+#     # userID = models.AutoField(primary_key=True)
+#     userName = models.CharField(max_length=100, null=True)
+#     email = models.EmailField(max_length=255, unique=True)
+#     password = models.CharField(max_length=100)
+#     # TODO: check the lastModified to let user know the password should be updated, because for fun.
+
+#     objects = UserAccountManager()
+
+#     # overwrite Django default authentication from using username to email
+#     USERNAME_FIELD = 'email'
+#     REQUIRED_FIELDS = ['userName']
+
+#     def get_user_name(self):
+#         return self.userName
+
+#     def __str__(self):
+#         return self.email
 
 class User(models.Model):
     # User requirements. FirstName, LastName, UserName,  
-    userID = models.AutoField(primary_key=True)
-    firstName = models.CharField(max_length=50, null=True)
-    lastName = models.CharField(max_length=50, null=True)
-    userName = models.CharField(max_length=50, null=True)
-    email = models.EmailField()
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, null=True)
+    userName = models.CharField(max_length=100, null=True)
+    email = models.EmailField(max_length=255, unique=True)
     password = models.CharField(max_length=100)
     # TODO: check the lastModified to let user know the password should be updated, because for fun.
     createdOn = models.DateTimeField(editable=False)
     lastModified = models.DateTimeField();
 
-    # def save(self, *args, **kwargs):
-    #     # on save, will update the createdOn. Check if new User record
-    #     if not self.id:
-    #         self.createdOn = timezone.now();
-    #     self.modified = timezone.now();
-    #     return super(User, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        # on save, will update the createdOn. Check if new User record
+        if not self.id:
+            self.createdOn = timezone.now();
+        self.modified = timezone.now();
+        return super(User, self).save(*args, **kwargs)
+
+    def get_name(self):
+        return self.name
 
     def __str__(self):
-        return self.firstName + " " + self.lastName
+        return self.email
 
 class Movie(models.Model):
     # OMDb API returns Json with string values. Will be storing them into charfield
     id = models.AutoField(primary_key=True)
+    # user id as the foriegn key so movie can be tied to the user
     # user = models.ForeignKey(User, on_delete = models.CASCADE)
     Title = models.CharField(max_length=100, null=False, blank=False)
     Year = models.CharField(max_length=4, null=True, blank=True)

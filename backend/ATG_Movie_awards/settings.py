@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.ApiConfig',
-    'rest_framework'
+    'corsheaders',
+    'rest_framework',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -77,8 +78,12 @@ WSGI_APPLICATION = 'ATG_Movie_awards.wsgi.application'
 
 DATABASES = {
     'default': {
+        # could use django.db.backends.mysql
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'main_db',
+        'USER': 'admin',
+        'PASSWORD': 'password123',
+        'HOST': 'localhost'
     }
 }
 
@@ -123,3 +128,22 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# in our views the user will be authenticated to access, some views will be permission denied/allowed per user level.
+# rest is default settings
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': {
+#         'rest_framework.permission.IsAuthenticated'
+#     },
+#     'DEFAULT_AUTHENTICATION_CLASSES': {
+#         'rest_framework_simplejwt.authentication.JWTAuthentication'
+#     },
+#     'DEFAULT_PAGINATION_CLASS': {
+#         'rest_framework.pagination.PageNumberPagination'
+#     },
+#     'PAGE_SIZE': 3
+# }
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# AUTH_USER_MODEL = 'api.UserAccount'
