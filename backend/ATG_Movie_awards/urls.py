@@ -28,5 +28,5 @@ router.register(r'movies', views.MovieSerializerView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('api/', include(router.urls))
 ]
