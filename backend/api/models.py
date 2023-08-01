@@ -69,7 +69,7 @@ class User(models.Model):
 
 class Movie(models.Model):
     # OMDb API returns Json with string values. Will be storing them into charfield
-    id = models.AutoField(primary_key=True)
+    Id = models.AutoField(primary_key=True)
     # user id as the foriegn key so movie can be tied to the user
     # user = models.ForeignKey(User, on_delete = models.CASCADE)
     Title = models.CharField(max_length=100, null=False, blank=False)

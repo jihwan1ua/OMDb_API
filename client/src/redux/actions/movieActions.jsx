@@ -1,10 +1,9 @@
 // actions for handling OBDb api.
-
-import { GET_MOVIE_FAIL, GET_MOVIE_REQUEST, GET_MOVIE_SUCCESS } from "../../constants/movieConstants"
+import { GET_MOVIE_FAIL, GET_MOVIE_REQUEST, GET_MOVIE_SUCCESS } from "../../constants/movieConstants";
+import axios from 'axios';
 
 // get all movies data from api. Will be called from componenets, movieList
 export const getListMovies = () => async (dispatch) => {
-
 
     try{
         dispatch({

@@ -74,3 +74,7 @@ components are where the frontend visual components exist
 reducers are where scripts to handle state of the components
 actions are where scripts to handle restful http actions, GET, POST, etc.
 constants are where the constant variables exist
+
+Examples were found from various official docs such as Bootstrap, React, etc.
+https://www.youtube.com/watch?v=wTs6Oa4m47o&ab_channel=80%2F20Coding
+https://www.youtube.com/watch?v=PAQiYxUTUNI&ab_channel=WebDevelopmentwithXtina

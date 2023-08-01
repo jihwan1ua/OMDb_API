@@ -3,19 +3,20 @@ import { combineReducers, applyMiddleware } from "redux";
 import { createStore } from 'redux';
 import thunk from "redux-thunk";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { movieReducer } from "./reducers/movieReducer"; 
-// import rootReducer from './reducers';
+import { movieReducer } from "./reducers/movieReducer";
+import { searchReducer } from "./reducers/searchReducer";
 
 const reducer = combineReducers({
-    movieList: movieReducer
+    movieList: movieReducer,
+    searchList: searchReducer
 });
 
+// middlware and redux-thunk will return functions within redux to allow app to be asynchoronous, like ajax request.
 const middleware = [thunk];
 
 const initialState = {};
 
 const store = createStore(
-    // rootReducer,
     reducer,
     initialState,
     composeWithDevTools(applyMiddleware(...middleware))
