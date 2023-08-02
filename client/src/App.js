@@ -11,6 +11,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 import UserMovieBlocks from './components/UserMovieBlocks';
 import UserRegistration from './components/layout/UserRegistration';
+import Login from './components/layout/Login';
+import Register from './components/layout/Register';
 
 class App extends Component {
   render() {
@@ -21,6 +23,8 @@ class App extends Component {
             <Routes>  
               <Route path='/' element={<Main />} />
               <Route path='/user/' element={<UserRegistration />} />
+              <Route path='/user/login' element={<Login />} />
+              <Route path='/user/register' element={<Register />} />
               <Route path='/user/mylist' element={<UserMovieBlocks />} />
             </Routes>
           </BrowserRouter>

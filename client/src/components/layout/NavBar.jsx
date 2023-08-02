@@ -11,7 +11,7 @@ const NavBar = (prop) => {
 
   let navigate = useNavigate();
   const navigateUser = () => {
-    let newPath = '/user';
+    let newPath = '/user/login';
     navigate(newPath);
   }
 
