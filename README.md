@@ -3,7 +3,7 @@ ATG Movie Awards
 
 Ji Hwan's project for creating movie DB web app using OBDb API `https://www.omdbapi.com/`
 
-backend is for server and DB models
+backend is for server and DB models using Python Django.
 
 client is for the frontend using ReactJS, Redux. I'm using Material-UI for the UI components.
 
