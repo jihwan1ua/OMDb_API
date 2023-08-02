@@ -10,6 +10,7 @@ import store from './redux/store';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 import UserMovieBlocks from './components/UserMovieBlocks';
+import UserRegistration from './components/layout/UserRegistration';
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
           <BrowserRouter>
             <Routes>  
               <Route path='/' element={<Main />} />
-              {/* <Route exact path='/user/registration' component={UserRegistrationForm} /> */}
+              <Route path='/user/' element={<UserRegistration />} />
               <Route path='/user/mylist' element={<UserMovieBlocks />} />
             </Routes>
           </BrowserRouter>

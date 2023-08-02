@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -91,13 +91,13 @@ const MovieCard = (props) => {
             </Typography>
         </CardContent>
         <CardActions style={{justifyContent: 'center'}}>
-            {/* <Button variant="contained" size="small" onClick={() => alert('Please log in to add to your list!')}>Add to my List</Button> */}
+            {/* need to check if movies already in my list*/}
             <Button
                 variant="contained"
                 size="small"
                 disabled={
-                    movies?.length >= 5 
-                        ? true
+                    movies?.length >= 0
+                        ? movies?.some(movieSelected => movieSelected.Title === movie.Title && movieSelected.Year === movie.Year)
                         : false
                 }
                 onClick={() => movieOnClick(movie)}>

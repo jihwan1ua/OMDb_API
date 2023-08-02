@@ -5,7 +5,6 @@ import SearchBar from '../SearchBar';
 import NavBar from './NavBar';
 import MovieBlocks from '../MovieBlocks';
 import Footer from './Footer';
-import { UserAvatarModal } from './UserAvatarModal';
 
 const Main = () => {
   return (

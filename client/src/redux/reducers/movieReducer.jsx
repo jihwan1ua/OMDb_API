@@ -1,5 +1,4 @@
 import { GET_MOVIE_REQUEST, GET_MOVIE_SUCCESS, GET_MOVIE_FAIL, ADD_MOVIE_TO_MY_LIST, ADD_MOVIE_TO_MY_LIST_SUCCESS, ADD_MOVIE_TO_MY_LIST_FAIL, DELETE_MOVIE_FROM_MY_LIST, DELETE_MOVIE_FROM_MY_LIST_SUCCESS, DELETE_MOVIE_FROM_MY_LIST_FAIL } from "../../constants/movieConstants"
-import { deleteMovieFromMyList } from "../actions/movieActions"
 
 export const movieReducer = (state={ movie: [] }, action) => {
     switch (action.type) {

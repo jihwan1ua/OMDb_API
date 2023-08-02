@@ -21,8 +21,6 @@ const UserMovieBlocks = (props) => {
 
     const { success, loading, movies } = movieBlock;
 
-    console.log(movieBlock);
-
     // on page load get the data
     // pass in an empty array on 2nd param to prevent infinite loop
     useEffect(() => {
