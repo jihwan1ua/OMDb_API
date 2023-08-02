@@ -8,6 +8,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+{/*
+  TODO: Future development.
+  Following component is for the single movie detail view component when user clicks into the movie from MovieCard,
+*/}
+
 const Movie = (props) => {
   // get data from store (redux-thunk)
   const dispatch = useDispatch();
@@ -24,34 +29,39 @@ const Movie = (props) => {
   }, [dispatch]);
 
   return (
-    <Card sx={{
-      maxWidth: 345,
-      margin: "0 auto",
-      padding: "0.1em",
-    }}>
-      <CardMedia
-        component="img"
-        height="250"
-        sx={{
-          padding: "1em 1em 0 1em",
-          objectFit: "contain"
-        }}
-        image="https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg"
-        title="Movie Title"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Movie Title
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Movie Text......
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Add to my List</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <div></div>
+    // {content.Search.map((movies) => (
+    //   <Grid items xs={3} key={movies.id}>
+    //     <Card sx={{
+    //       maxWidth: 245,
+    //       margin: "0 auto",
+    //       padding: "0.1em",
+    //       backgroundColor: "rgb(43, 30, 34)",
+    //     }}>
+    //       <CardMedia
+    //         component="img"
+    //         height="250"
+    //         sx={{
+    //           padding: "1em 1em 0 1em",
+    //           objectFit: "contain"
+    //         }}
+    //         image={movies.Image}
+    //         title={movies.Title}
+    //       />
+    //       <CardContent>
+    //         <Typography align='center' gutterBottom variant='h5' component="div">
+    //           {movies.Title}
+    //         </Typography>
+    //         <Typography align='center' variant="body2" color="text.secondary">
+    //           {movies.Year}
+    //         </Typography>
+    //       </CardContent>
+    //       <CardActions style={{justifyContent: 'center'}}>
+    //         <Button variant="contained" size="small">Add to my List</Button>
+    //       </CardActions>
+    //     </Card>
+    //   </Grid>
+    // ))};
   )
 }
 
