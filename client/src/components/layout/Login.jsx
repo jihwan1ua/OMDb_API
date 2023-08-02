@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.userList);
-    const { success, loading, userInfo } = users;
+    const { success, loading, account } = users;
     
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
@@ -26,9 +26,9 @@ const Login = () => {
         }
     }
     
-    const saveLoginState = (userInfo) => {
+    const saveLoginState = (account) => {
         try {
-            const login = JSON.stringify(userInfo.Id);
+            const login = JSON.stringify(account.Id);
             localStorage.setItem('loginState', login);
         } catch {
         }
@@ -45,16 +45,18 @@ const Login = () => {
     const loginClick = () => {
         // check if user is found
         // e.preventDefault();
-        for (let i = 0; i <= userInfo.length-1; i++) {
-            if (email === userInfo[i].Email && pass === userInfo[i].Password)
-            {
-                saveLoginState(userInfo[i])
-                loggedin(userInfo[i].Id)
+        if (account.length > 0) {
+            for (let i = 0; i <= account.length-1; i++) {
+                if (email === account[i].Email && pass === account[i].Password)
+                {
+                    saveLoginState(account[i])
+                    loggedin(account[i].Id)
 
-                return Navigate('/', { state: userInfo[i].Id })
+                    return Navigate('/', { state: account[i].Id })
+                }
+                    // console.log(email + ' was found in DB!')
+                    // alert(email + ' was found in DB!')
             }
-                // console.log(email + ' was found in DB!')
-                // alert(email + ' was found in DB!')
         }
         // console.log(email + ' was not found in DB!')
         // alert(email + ' was not found in DB!')
@@ -98,7 +100,7 @@ const Login = () => {
                     id="password"
                 />
                 <Button
-                    type="submit"
+                    // type="submit"
                     fullWidth
                     variant="contained"
                     color="primary"

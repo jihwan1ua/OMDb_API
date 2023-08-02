@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid, Typography, TextField, Button, Link } from '@mui/material';
-
+import { useNavigate } from 'react-router-dom';
 import { addUser, getUser } from '../../redux/actions/userActions';
 import NavBar from './NavBar';
 import Footer from './Footer';
@@ -11,6 +11,30 @@ const Register = () => {
     const [uName, setuName] = useState('')      
     const [email, setEmail] = useState('')  
     const [pass, setPass] = useState('')     
+
+    const loadLoginState = () => {
+        try {
+            const login = localStorage.getItem('loginState')
+            if (login === null) {
+                return undefined;
+            }
+            return JSON.parse(login);
+        } catch (err) {
+            return undefined;
+        }
+    }
+    
+    const saveLoginState = (account) => {
+        try {
+            const login = JSON.stringify(account.Id);
+            localStorage.setItem('loginState', login);
+        } catch {
+        }
+    }
+
+    const Navigate = useNavigate();
+
+    const [login, loggedin] = useState(loadLoginState);
 
     // submit button click, post input to database
     const handleClick = () => {
@@ -28,6 +52,11 @@ const Register = () => {
         {
             dispatch(addUser(userInfo))
             // dispatch(getUser())
+
+            // saveLoginState(userInfo)
+            // loggedin()
+
+            return Navigate('/user/login')
         }
     }
 
@@ -100,7 +129,7 @@ const Register = () => {
                 </Grid>
             </Grid>
             <Button
-                type="submit"
+                // type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
